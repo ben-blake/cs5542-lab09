@@ -1,0 +1,71 @@
+.claude/
+CLAUDE.md
+docs/
+artifacts/fine_tuned_model/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+private_key.pem
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.streamlit/secrets.toml
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node.js (for frontend components)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Large Data Files
+artifacts/fine_tuned_model/checkpoint-*/
+artifacts/fine_tuned_model/adapter_model.safetensors
+*.pt
+*.safetensors
