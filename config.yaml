@@ -1,0 +1,63 @@
+# Analytics Copilot - Reproducibility Configuration
+# All runtime parameters are centralized here for deterministic execution.
+
+# Random seed for any stochastic operations
+seed: 42
+
+# Snowflake connection (credentials loaded from .env)
+snowflake:
+  database: ANALYTICS_COPILOT
+  schema: RAW
+  metadata_schema: METADATA
+  warehouse: COPILOT_WH
+  role: TRAINING_ROLE
+
+# Cortex LLM settings
+llm:
+  model: llama3.1-70b
+  temperature: 0.0
+
+# Schema Linker settings
+schema_linker:
+  limit: 5               # max tables returned
+  search_multiplier: 10   # columns fetched = limit * multiplier
+
+# SQL Generator settings
+sql_generator:
+  max_retries: 3          # self-correction retry limit
+
+# Evaluation settings
+evaluation:
+  golden_queries_path: data/golden_queries.json
+  report_path: artifacts/evaluation_report.json
+  question_distribution:
+    easy: 0.4
+    medium: 0.4
+    hard: 0.2
+  default_count: 50
+
+# Data paths
+data:
+  olist_dir: data/olist
+  superstore_dir: data/superstore
+
+# Artifact output
+artifacts:
+  dir: artifacts
+  logs_dir: logs
+
+# Logging
+logging:
+  level: INFO
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+  log_file: logs/pipeline.log
+
+# Lab 8: Fine-tuned model settings
+finetuned:
+  api_url: "http://localhost:8000"
+  base_model: "codellama/CodeLlama-7b-Instruct-hf"
+  lora_r: 16
+  lora_alpha: 32
+  training_epochs: 3
+  model_path: artifacts/fine_tuned_model
+  instruction_dataset: data/instruction_dataset.json
