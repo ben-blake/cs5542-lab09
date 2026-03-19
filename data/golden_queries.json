@@ -1,0 +1,402 @@
+[
+  {
+    "question": "What is the total number of customers in the state of Rio de Janeiro?",
+    "sql_query": "SELECT COUNT(CUSTOMER_ID) FROM RAW.CUSTOMERS WHERE CUSTOMER_STATE = 'RJ'",
+    "difficulty": "easy",
+    "tables_used": "RAW.CUSTOMERS",
+    "verified": false,
+    "id": 1
+  },
+  {
+    "question": "What is the average price of products in the 'cama_mesa_banho' category?",
+    "sql_query": "SELECT AVG(PRICE) FROM RAW.ORDER_ITEMS WHERE PRODUCT_ID IN (SELECT PRODUCT_ID FROM RAW.PRODUCTS WHERE PRODUCT_CATEGORY_NAME = 'cama_mesa_banho')",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.PRODUCTS",
+    "verified": false,
+    "id": 2
+  },
+  {
+    "question": "What is the total freight value for orders delivered in 2018?",
+    "sql_query": "SELECT SUM(FREIGHT_VALUE) FROM RAW.ORDER_ITEMS WHERE ORDER_ID IN (SELECT ORDER_ID FROM RAW.ORDERS WHERE EXTRACT(YEAR FROM ORDER_DELIVERED_CUSTOMER_DATE) = 2018)",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS",
+    "verified": false,
+    "id": 3
+  },
+  {
+    "question": "What is the maximum review score given by customers?",
+    "sql_query": "SELECT MAX(REVIEW_SCORE) FROM RAW.ORDER_REVIEWS",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 4
+  },
+  {
+    "question": "How many sellers are from the state of São Paulo?",
+    "sql_query": "SELECT COUNT(SELLER_ID) FROM RAW.SELLERS WHERE SELLER_STATE = 'SP'",
+    "difficulty": "easy",
+    "tables_used": "RAW.SELLERS",
+    "verified": false,
+    "id": 5
+  },
+  {
+    "question": "What is the total number of customers in the state of Minas Gerais?",
+    "sql_query": "SELECT COUNT(CUSTOMER_ID) FROM RAW.CUSTOMERS WHERE CUSTOMER_STATE = 'MG'",
+    "difficulty": "easy",
+    "tables_used": "RAW.CUSTOMERS",
+    "verified": false,
+    "id": 6
+  },
+  {
+    "question": "How many orders were placed in 2017?",
+    "sql_query": "SELECT COUNT(ORDER_ID) FROM RAW.ORDERS WHERE EXTRACT(YEAR FROM ORDER_PURCHASE_TIMESTAMP) = 2017",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 7
+  },
+  {
+    "question": "How many orders were delivered in 2018?",
+    "sql_query": "SELECT COUNT(ORDER_ID) FROM RAW.ORDERS WHERE EXTRACT(YEAR FROM ORDER_DELIVERED_CUSTOMER_DATE) = 2018",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 8
+  },
+  {
+    "question": "What is the maximum product weight in grams?",
+    "sql_query": "SELECT MAX(PRODUCT_WEIGHT_G) FROM RAW.PRODUCTS",
+    "difficulty": "easy",
+    "tables_used": "RAW.PRODUCTS",
+    "verified": false,
+    "id": 9
+  },
+  {
+    "question": "What is the total payment value for orders with more than one installment?",
+    "sql_query": "SELECT SUM(PAYMENT_VALUE) FROM RAW.ORDER_PAYMENTS WHERE PAYMENT_INSTALLMENTS > 1",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_PAYMENTS",
+    "verified": false,
+    "id": 10
+  },
+  {
+    "question": "How many distinct product categories exist?",
+    "sql_query": "SELECT COUNT(DISTINCT PRODUCT_CATEGORY_NAME) FROM RAW.PRODUCTS",
+    "difficulty": "easy",
+    "tables_used": "RAW.PRODUCTS",
+    "verified": false,
+    "id": 11
+  },
+  {
+    "question": "How many orders were delivered in the state of São Paulo?",
+    "sql_query": "SELECT COUNT(ORDER_ID) FROM RAW.ORDERS WHERE CUSTOMER_ID IN (SELECT CUSTOMER_ID FROM RAW.CUSTOMERS WHERE CUSTOMER_STATE = 'SP')",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 12
+  },
+  {
+    "question": "What is the total freight value for orders placed in 2018?",
+    "sql_query": "SELECT SUM(FREIGHT_VALUE) FROM RAW.ORDER_ITEMS WHERE ORDER_ID IN (SELECT ORDER_ID FROM RAW.ORDERS WHERE EXTRACT(YEAR FROM ORDER_PURCHASE_TIMESTAMP) = 2018)",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS",
+    "verified": false,
+    "id": 13
+  },
+  {
+    "question": "How many customers are from the city of Rio de Janeiro?",
+    "sql_query": "SELECT COUNT(CUSTOMER_ID) FROM RAW.CUSTOMERS WHERE CUSTOMER_CITY = 'rio de janeiro'",
+    "difficulty": "easy",
+    "tables_used": "RAW.CUSTOMERS",
+    "verified": false,
+    "id": 14
+  },
+  {
+    "question": "What is the average review score across all orders?",
+    "sql_query": "SELECT AVG(REVIEW_SCORE) FROM RAW.ORDER_REVIEWS",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 15
+  },
+  {
+    "question": "How many orders have a payment type of credit card?",
+    "sql_query": "SELECT COUNT(DISTINCT ORDER_ID) FROM RAW.ORDER_PAYMENTS WHERE PAYMENT_TYPE = 'credit_card'",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_PAYMENTS",
+    "verified": false,
+    "id": 16
+  },
+  {
+    "question": "What is the total number of sellers?",
+    "sql_query": "SELECT COUNT(SELLER_ID) FROM RAW.SELLERS",
+    "difficulty": "easy",
+    "tables_used": "RAW.SELLERS",
+    "verified": false,
+    "id": 17
+  },
+  {
+    "question": "What is the total freight value for orders delivered in 2017?",
+    "sql_query": "SELECT SUM(FREIGHT_VALUE) FROM RAW.ORDER_ITEMS WHERE ORDER_ID IN (SELECT ORDER_ID FROM RAW.ORDERS WHERE EXTRACT(YEAR FROM ORDER_DELIVERED_CUSTOMER_DATE) = 2017)",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS",
+    "verified": false,
+    "id": 18
+  },
+  {
+    "question": "What is the minimum review score given by customers?",
+    "sql_query": "SELECT MIN(REVIEW_SCORE) FROM RAW.ORDER_REVIEWS",
+    "difficulty": "easy",
+    "tables_used": "RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 19
+  },
+  {
+    "question": "How many sellers are from the city of São Paulo?",
+    "sql_query": "SELECT COUNT(SELLER_ID) FROM RAW.SELLERS WHERE SELLER_CITY = 'sao paulo'",
+    "difficulty": "easy",
+    "tables_used": "RAW.SELLERS",
+    "verified": false,
+    "id": 20
+  },
+  {
+    "question": "What is the average order value (price + freight) by customer city and state?",
+    "sql_query": "SELECT AVG(T1.PRICE + T1.FREIGHT_VALUE) AS AVG_ORDER_VALUE, T2.CUSTOMER_CITY, T2.CUSTOMER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.ORDERS T3 ON T1.ORDER_ID = T3.ORDER_ID INNER JOIN RAW.CUSTOMERS T2 ON T3.CUSTOMER_ID = T2.CUSTOMER_ID GROUP BY T2.CUSTOMER_CITY, T2.CUSTOMER_STATE ORDER BY AVG_ORDER_VALUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 1
+  },
+  {
+    "question": "Which product categories have the highest average review scores?",
+    "sql_query": "SELECT T1.PRODUCT_CATEGORY_NAME, AVG(T2.REVIEW_SCORE) AS AVG_REVIEW_SCORE FROM RAW.PRODUCTS T1 INNER JOIN RAW.ORDER_ITEMS T3 ON T1.PRODUCT_ID = T3.PRODUCT_ID INNER JOIN RAW.ORDER_REVIEWS T2 ON T3.ORDER_ID = T2.ORDER_ID GROUP BY T1.PRODUCT_CATEGORY_NAME ORDER BY AVG_REVIEW_SCORE DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.PRODUCTS, RAW.ORDER_ITEMS, RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 2
+  },
+  {
+    "question": "What is the total revenue (price + freight) by seller city and state?",
+    "sql_query": "SELECT SUM(T1.PRICE + T1.FREIGHT_VALUE) AS TOTAL_REVENUE, T2.SELLER_CITY, T2.SELLER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.SELLERS T2 ON T1.SELLER_ID = T2.SELLER_ID GROUP BY T2.SELLER_CITY, T2.SELLER_STATE ORDER BY TOTAL_REVENUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.SELLERS",
+    "verified": false,
+    "id": 3
+  },
+  {
+    "question": "What percentage of orders were delivered on time by month?",
+    "sql_query": "SELECT EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) AS MONTH, COUNT(CASE WHEN ORDER_DELIVERED_CUSTOMER_DATE <= ORDER_ESTIMATED_DELIVERY_DATE THEN 1 END) / COUNT(*) * 100 AS ON_TIME_DELIVERY_RATE FROM RAW.ORDERS GROUP BY EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) ORDER BY MONTH",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 4
+  },
+  {
+    "question": "Which customers have placed the most orders?",
+    "sql_query": "SELECT CUSTOMER_ID, COUNT(ORDER_ID) AS ORDER_COUNT FROM RAW.ORDERS GROUP BY CUSTOMER_ID ORDER BY ORDER_COUNT DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 5
+  },
+  {
+    "question": "What is the average order value (price + freight) by customer city and state?",
+    "sql_query": "SELECT AVG(T1.PRICE + T1.FREIGHT_VALUE) AS AVG_ORDER_VALUE, T2.CUSTOMER_CITY, T2.CUSTOMER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.ORDERS T3 ON T1.ORDER_ID = T3.ORDER_ID INNER JOIN RAW.CUSTOMERS T2 ON T3.CUSTOMER_ID = T2.CUSTOMER_ID GROUP BY T2.CUSTOMER_CITY, T2.CUSTOMER_STATE ORDER BY AVG_ORDER_VALUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 6
+  },
+  {
+    "question": "Which product categories have the highest average review scores?",
+    "sql_query": "SELECT T1.PRODUCT_CATEGORY_NAME, AVG(T2.REVIEW_SCORE) AS AVG_REVIEW_SCORE FROM RAW.PRODUCTS T1 INNER JOIN RAW.ORDER_ITEMS T3 ON T1.PRODUCT_ID = T3.PRODUCT_ID INNER JOIN RAW.ORDER_REVIEWS T2 ON T3.ORDER_ID = T2.ORDER_ID GROUP BY T1.PRODUCT_CATEGORY_NAME ORDER BY AVG_REVIEW_SCORE DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.PRODUCTS, RAW.ORDER_ITEMS, RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 7
+  },
+  {
+    "question": "What is the total revenue (price + freight) by seller city and state?",
+    "sql_query": "SELECT SUM(T1.PRICE + T1.FREIGHT_VALUE) AS TOTAL_REVENUE, T2.SELLER_CITY, T2.SELLER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.SELLERS T2 ON T1.SELLER_ID = T2.SELLER_ID GROUP BY T2.SELLER_CITY, T2.SELLER_STATE ORDER BY TOTAL_REVENUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.SELLERS",
+    "verified": false,
+    "id": 8
+  },
+  {
+    "question": "What percentage of orders were delivered on time by month?",
+    "sql_query": "SELECT EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) AS MONTH, COUNT(CASE WHEN ORDER_DELIVERED_CUSTOMER_DATE <= ORDER_ESTIMATED_DELIVERY_DATE THEN 1 END) / COUNT(*) * 100 AS ON_TIME_DELIVERY_RATE FROM RAW.ORDERS GROUP BY EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) ORDER BY MONTH",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 9
+  },
+  {
+    "question": "Which customers have placed the most orders?",
+    "sql_query": "SELECT CUSTOMER_ID, COUNT(ORDER_ID) AS ORDER_COUNT FROM RAW.ORDERS GROUP BY CUSTOMER_ID ORDER BY ORDER_COUNT DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 10
+  },
+  {
+    "question": "What is the average order value (price + freight) by customer city and state?",
+    "sql_query": "SELECT AVG(T1.PRICE + T1.FREIGHT_VALUE) AS AVG_ORDER_VALUE, T2.CUSTOMER_CITY, T2.CUSTOMER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.ORDERS T3 ON T1.ORDER_ID = T3.ORDER_ID INNER JOIN RAW.CUSTOMERS T2 ON T3.CUSTOMER_ID = T2.CUSTOMER_ID GROUP BY T2.CUSTOMER_CITY, T2.CUSTOMER_STATE ORDER BY AVG_ORDER_VALUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 11
+  },
+  {
+    "question": "Which product categories have the highest average review scores?",
+    "sql_query": "SELECT T1.PRODUCT_CATEGORY_NAME, AVG(T2.REVIEW_SCORE) AS AVG_REVIEW_SCORE FROM RAW.PRODUCTS T1 INNER JOIN RAW.ORDER_ITEMS T3 ON T1.PRODUCT_ID = T3.PRODUCT_ID INNER JOIN RAW.ORDER_REVIEWS T2 ON T3.ORDER_ID = T2.ORDER_ID GROUP BY T1.PRODUCT_CATEGORY_NAME ORDER BY AVG_REVIEW_SCORE DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.PRODUCTS, RAW.ORDER_ITEMS, RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 12
+  },
+  {
+    "question": "What is the total revenue (price + freight) by seller city and state?",
+    "sql_query": "SELECT SUM(T1.PRICE + T1.FREIGHT_VALUE) AS TOTAL_REVENUE, T2.SELLER_CITY, T2.SELLER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.SELLERS T2 ON T1.SELLER_ID = T2.SELLER_ID GROUP BY T2.SELLER_CITY, T2.SELLER_STATE ORDER BY TOTAL_REVENUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.SELLERS",
+    "verified": false,
+    "id": 13
+  },
+  {
+    "question": "What percentage of orders were delivered on time by month?",
+    "sql_query": "SELECT EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) AS MONTH, COUNT(CASE WHEN ORDER_DELIVERED_CUSTOMER_DATE <= ORDER_ESTIMATED_DELIVERY_DATE THEN 1 END) / COUNT(*) * 100 AS ON_TIME_DELIVERY_RATE FROM RAW.ORDERS GROUP BY EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) ORDER BY MONTH",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 14
+  },
+  {
+    "question": "Which customers have placed the most orders?",
+    "sql_query": "SELECT CUSTOMER_ID, COUNT(ORDER_ID) AS ORDER_COUNT FROM RAW.ORDERS GROUP BY CUSTOMER_ID ORDER BY ORDER_COUNT DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 15
+  },
+  {
+    "question": "What is the average order value (price + freight) by customer city and state?",
+    "sql_query": "SELECT AVG(T1.PRICE + T1.FREIGHT_VALUE) AS AVG_ORDER_VALUE, T2.CUSTOMER_CITY, T2.CUSTOMER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.ORDERS T3 ON T1.ORDER_ID = T3.ORDER_ID INNER JOIN RAW.CUSTOMERS T2 ON T3.CUSTOMER_ID = T2.CUSTOMER_ID GROUP BY T2.CUSTOMER_CITY, T2.CUSTOMER_STATE ORDER BY AVG_ORDER_VALUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 16
+  },
+  {
+    "question": "Which product categories have the highest average review scores?",
+    "sql_query": "SELECT T1.PRODUCT_CATEGORY_NAME, AVG(T2.REVIEW_SCORE) AS AVG_REVIEW_SCORE FROM RAW.PRODUCTS T1 INNER JOIN RAW.ORDER_ITEMS T3 ON T1.PRODUCT_ID = T3.PRODUCT_ID INNER JOIN RAW.ORDER_REVIEWS T2 ON T3.ORDER_ID = T2.ORDER_ID GROUP BY T1.PRODUCT_CATEGORY_NAME ORDER BY AVG_REVIEW_SCORE DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.PRODUCTS, RAW.ORDER_ITEMS, RAW.ORDER_REVIEWS",
+    "verified": false,
+    "id": 17
+  },
+  {
+    "question": "What is the total revenue (price + freight) by seller city and state?",
+    "sql_query": "SELECT SUM(T1.PRICE + T1.FREIGHT_VALUE) AS TOTAL_REVENUE, T2.SELLER_CITY, T2.SELLER_STATE FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.SELLERS T2 ON T1.SELLER_ID = T2.SELLER_ID GROUP BY T2.SELLER_CITY, T2.SELLER_STATE ORDER BY TOTAL_REVENUE DESC",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.SELLERS",
+    "verified": false,
+    "id": 18
+  },
+  {
+    "question": "What percentage of orders were delivered on time by month?",
+    "sql_query": "SELECT EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) AS MONTH, COUNT(CASE WHEN ORDER_DELIVERED_CUSTOMER_DATE <= ORDER_ESTIMATED_DELIVERY_DATE THEN 1 END) / COUNT(*) * 100 AS ON_TIME_DELIVERY_RATE FROM RAW.ORDERS GROUP BY EXTRACT(MONTH FROM ORDER_DELIVERED_CUSTOMER_DATE) ORDER BY MONTH",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 19
+  },
+  {
+    "question": "Which customers have placed the most orders?",
+    "sql_query": "SELECT CUSTOMER_ID, COUNT(ORDER_ID) AS ORDER_COUNT FROM RAW.ORDERS GROUP BY CUSTOMER_ID ORDER BY ORDER_COUNT DESC LIMIT 10",
+    "difficulty": "medium",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 20
+  },
+  {
+    "question": "What is the total payment value by customer state, ranked highest to lowest?",
+    "sql_query": "WITH state_payments AS (SELECT T3.CUSTOMER_STATE, SUM(T1.PAYMENT_VALUE) AS TOTAL_PAYMENTS FROM RAW.ORDER_PAYMENTS T1 INNER JOIN RAW.ORDERS T2 ON T1.ORDER_ID = T2.ORDER_ID INNER JOIN RAW.CUSTOMERS T3 ON T2.CUSTOMER_ID = T3.CUSTOMER_ID GROUP BY T3.CUSTOMER_STATE) SELECT CUSTOMER_STATE, TOTAL_PAYMENTS, RANK() OVER (ORDER BY TOTAL_PAYMENTS DESC) AS rank FROM state_payments ORDER BY rank",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_PAYMENTS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 1
+  },
+  {
+    "question": "Find the top 3 most ordered products in each category by order count",
+    "sql_query": "WITH ranked_products AS (SELECT T2.PRODUCT_CATEGORY_NAME, T2.PRODUCT_ID, COUNT(T1.ORDER_ITEM_ID) AS ORDER_COUNT, ROW_NUMBER() OVER (PARTITION BY T2.PRODUCT_CATEGORY_NAME ORDER BY COUNT(T1.ORDER_ITEM_ID) DESC) AS row_num FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.PRODUCTS T2 ON T1.PRODUCT_ID = T2.PRODUCT_ID GROUP BY T2.PRODUCT_CATEGORY_NAME, T2.PRODUCT_ID) SELECT PRODUCT_CATEGORY_NAME, PRODUCT_ID, ORDER_COUNT FROM ranked_products WHERE row_num <= 3 ORDER BY PRODUCT_CATEGORY_NAME, ORDER_COUNT DESC",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.PRODUCTS",
+    "verified": false,
+    "id": 2
+  },
+  {
+    "question": "Calculate the customer lifetime value (total payments) and rank customers by CLV",
+    "sql_query": "WITH customer_clv AS (SELECT T3.CUSTOMER_ID, SUM(T1.PAYMENT_VALUE) AS TOTAL_PAID, COUNT(DISTINCT T2.ORDER_ID) AS ORDER_COUNT FROM RAW.ORDER_PAYMENTS T1 INNER JOIN RAW.ORDERS T2 ON T1.ORDER_ID = T2.ORDER_ID INNER JOIN RAW.CUSTOMERS T3 ON T2.CUSTOMER_ID = T3.CUSTOMER_ID GROUP BY T3.CUSTOMER_ID) SELECT CUSTOMER_ID, TOTAL_PAID, ORDER_COUNT, RANK() OVER (ORDER BY TOTAL_PAID DESC) AS rank FROM customer_clv ORDER BY rank LIMIT 20",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_PAYMENTS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 3
+  },
+  {
+    "question": "What is the month-over-month growth rate in total order payment value?",
+    "sql_query": "WITH monthly_payments AS (SELECT DATE_TRUNC('MONTH', T2.ORDER_PURCHASE_TIMESTAMP) AS MONTH, SUM(T1.PAYMENT_VALUE) AS TOTAL_PAYMENTS FROM RAW.ORDER_PAYMENTS T1 INNER JOIN RAW.ORDERS T2 ON T1.ORDER_ID = T2.ORDER_ID GROUP BY DATE_TRUNC('MONTH', T2.ORDER_PURCHASE_TIMESTAMP)) SELECT MONTH, TOTAL_PAYMENTS, LAG(TOTAL_PAYMENTS) OVER (ORDER BY MONTH) AS PREV_MONTH_PAYMENTS, (TOTAL_PAYMENTS - LAG(TOTAL_PAYMENTS) OVER (ORDER BY MONTH)) / NULLIF(LAG(TOTAL_PAYMENTS) OVER (ORDER BY MONTH), 0) AS GROWTH_RATE FROM monthly_payments ORDER BY MONTH",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_PAYMENTS, RAW.ORDERS",
+    "verified": false,
+    "id": 4
+  },
+  {
+    "question": "Find the top 3 sellers by total revenue in each state",
+    "sql_query": "WITH seller_revenue AS (SELECT T2.SELLER_STATE, T2.SELLER_ID, SUM(T1.PRICE + T1.FREIGHT_VALUE) AS TOTAL_REVENUE, ROW_NUMBER() OVER (PARTITION BY T2.SELLER_STATE ORDER BY SUM(T1.PRICE + T1.FREIGHT_VALUE) DESC) AS row_num FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.SELLERS T2 ON T1.SELLER_ID = T2.SELLER_ID GROUP BY T2.SELLER_STATE, T2.SELLER_ID) SELECT SELLER_STATE, SELLER_ID, TOTAL_REVENUE FROM seller_revenue WHERE row_num <= 3 ORDER BY SELLER_STATE, TOTAL_REVENUE DESC",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.SELLERS",
+    "verified": false,
+    "id": 5
+  },
+  {
+    "question": "What is the total payment value by customer state, ranked highest to lowest?",
+    "sql_query": "WITH state_payments AS (SELECT T3.CUSTOMER_STATE, SUM(T1.PAYMENT_VALUE) AS TOTAL_PAYMENTS FROM RAW.ORDER_PAYMENTS T1 INNER JOIN RAW.ORDERS T2 ON T1.ORDER_ID = T2.ORDER_ID INNER JOIN RAW.CUSTOMERS T3 ON T2.CUSTOMER_ID = T3.CUSTOMER_ID GROUP BY T3.CUSTOMER_STATE) SELECT CUSTOMER_STATE, TOTAL_PAYMENTS, RANK() OVER (ORDER BY TOTAL_PAYMENTS DESC) AS rank FROM state_payments ORDER BY rank",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_PAYMENTS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 6
+  },
+  {
+    "question": "Find the top 3 most ordered products in each category by order count",
+    "sql_query": "WITH ranked_products AS (SELECT T2.PRODUCT_CATEGORY_NAME, T2.PRODUCT_ID, COUNT(T1.ORDER_ITEM_ID) AS ORDER_COUNT, ROW_NUMBER() OVER (PARTITION BY T2.PRODUCT_CATEGORY_NAME ORDER BY COUNT(T1.ORDER_ITEM_ID) DESC) AS row_num FROM RAW.ORDER_ITEMS T1 INNER JOIN RAW.PRODUCTS T2 ON T1.PRODUCT_ID = T2.PRODUCT_ID GROUP BY T2.PRODUCT_CATEGORY_NAME, T2.PRODUCT_ID) SELECT PRODUCT_CATEGORY_NAME, PRODUCT_ID, ORDER_COUNT FROM ranked_products WHERE row_num <= 3 ORDER BY PRODUCT_CATEGORY_NAME, ORDER_COUNT DESC",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_ITEMS, RAW.PRODUCTS",
+    "verified": false,
+    "id": 7
+  },
+  {
+    "question": "What is the month-over-month growth rate in number of orders placed?",
+    "sql_query": "WITH monthly_orders AS (SELECT DATE_TRUNC('MONTH', ORDER_PURCHASE_TIMESTAMP) AS MONTH, COUNT(ORDER_ID) AS TOTAL_ORDERS FROM RAW.ORDERS GROUP BY DATE_TRUNC('MONTH', ORDER_PURCHASE_TIMESTAMP)) SELECT MONTH, TOTAL_ORDERS, LAG(TOTAL_ORDERS) OVER (ORDER BY MONTH) AS PREV_MONTH_ORDERS, (TOTAL_ORDERS - LAG(TOTAL_ORDERS) OVER (ORDER BY MONTH)) / NULLIF(LAG(TOTAL_ORDERS) OVER (ORDER BY MONTH), 0) AS GROWTH_RATE FROM monthly_orders ORDER BY MONTH",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDERS",
+    "verified": false,
+    "id": 8
+  },
+  {
+    "question": "Find the customers who have placed orders in at least 4 distinct months",
+    "sql_query": "WITH customer_months AS (SELECT T2.CUSTOMER_ID, DATE_TRUNC('MONTH', T1.ORDER_PURCHASE_TIMESTAMP) AS ORDER_MONTH FROM RAW.ORDERS T1 INNER JOIN RAW.CUSTOMERS T2 ON T1.CUSTOMER_ID = T2.CUSTOMER_ID GROUP BY T2.CUSTOMER_ID, DATE_TRUNC('MONTH', T1.ORDER_PURCHASE_TIMESTAMP)) SELECT CUSTOMER_ID, COUNT(DISTINCT ORDER_MONTH) AS MONTHS_WITH_ORDERS FROM customer_months GROUP BY CUSTOMER_ID HAVING COUNT(DISTINCT ORDER_MONTH) >= 4 ORDER BY MONTHS_WITH_ORDERS DESC",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 9
+  },
+  {
+    "question": "Calculate the customer lifetime value (total payments) and rank customers by CLV",
+    "sql_query": "WITH customer_clv AS (SELECT T3.CUSTOMER_ID, SUM(T1.PAYMENT_VALUE) AS TOTAL_PAID, COUNT(DISTINCT T2.ORDER_ID) AS ORDER_COUNT FROM RAW.ORDER_PAYMENTS T1 INNER JOIN RAW.ORDERS T2 ON T1.ORDER_ID = T2.ORDER_ID INNER JOIN RAW.CUSTOMERS T3 ON T2.CUSTOMER_ID = T3.CUSTOMER_ID GROUP BY T3.CUSTOMER_ID) SELECT CUSTOMER_ID, TOTAL_PAID, ORDER_COUNT, RANK() OVER (ORDER BY TOTAL_PAID DESC) AS rank FROM customer_clv ORDER BY rank LIMIT 20",
+    "difficulty": "hard",
+    "tables_used": "RAW.ORDER_PAYMENTS, RAW.ORDERS, RAW.CUSTOMERS",
+    "verified": false,
+    "id": 10
+  }
+]
