@@ -1,0 +1,1517 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07
+collecting ... collected 18 items
+
+tests/test_smoke.py::TestImports::test_import_config PASSED              [  5%]
+tests/test_smoke.py::TestImports::test_import_logger PASSED              [ 11%]
+tests/test_smoke.py::TestImports::test_import_schema_linker PASSED       [ 16%]
+tests/test_smoke.py::TestImports::test_import_sql_generator PASSED       [ 22%]
+tests/test_smoke.py::TestImports::test_import_validator PASSED           [ 27%]
+tests/test_smoke.py::TestImports::test_import_viz PASSED                 [ 33%]
+tests/test_smoke.py::TestConfig::test_config_has_llm_model PASSED        [ 38%]
+tests/test_smoke.py::TestConfig::test_config_has_seed PASSED             [ 44%]
+tests/test_smoke.py::TestGoldenQueries::test_golden_queries_exists PASSED [ 50%]
+tests/test_smoke.py::TestGoldenQueries::test_golden_queries_structure PASSED [ 55%]
+tests/test_smoke.py::TestGoldenQueries::test_golden_queries_valid_json PASSED [ 61%]
+tests/test_smoke.py::TestVisualization::test_auto_chart_bar PASSED       [ 66%]
+tests/test_smoke.py::TestVisualization::test_auto_chart_empty PASSED     [ 72%]
+tests/test_smoke.py::TestVisualization::test_auto_chart_single_column PASSED [ 77%]
+tests/test_smoke.py::TestSQLExtraction::test_extract_empty PASSED        [ 83%]
+tests/test_smoke.py::TestSQLExtraction::test_extract_fenced_sql PASSED   [ 88%]
+tests/test_smoke.py::TestSQLExtraction::test_extract_plain_sql PASSED    [ 94%]
+tests/test_smoke.py::TestSchemaLinkerInputValidation::test_empty_question_returns_empty PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/test_smoke.py::TestImports::test_import_schema_linker
+  /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+    warnings.warn(
+
+tests/test_smoke.py::TestImports::test_import_schema_linker
+  /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/src/agents/schema_linker.py:33: DeprecationWarning: Python Runtime 3.9 reached its End-Of-Life (EOL) in October 2025, there will be no further bug fixes or security updates for this runtime. We recommend that you upgrade your existing Python 3.9 objects to Python 3.10, 3.11, 3.12 or 3.13. Please note that end of support does not impact execution, and you will still be able to update and invoke existing objects. However, they will be running on an unsupported runtime which will no longer be maintained or patched by the Snowflake team. For more details, please refer to https://docs.snowflake.com/en/developer-guide/python-runtime-support-policy.
+    from snowflake.snowpark import Session
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 18 passed, 2 warnings in 3.29s ========================
+
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+
+================================================================================
+  Analytics Copilot - Data Ingestion Pipeline
+================================================================================
+
+Project root: /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07
+
+================================================================================
+  Step 1: Connecting to Snowflake
+================================================================================
+Using key pair authentication from: ./private_key.pem
+✓ Snowflake session created successfully for user: BLUEJAY
+✓ Connection established
+
+================================================================================
+  Step 2: Executing SQL Scripts
+================================================================================
+
+Executing: 01_setup.sql
+  ✓ Statement 4/10 executed successfully
+  ✓ Statement 5/10 executed successfully
+  ✓ Statement 6/10 executed successfully
+  ⚠ Warning on statement 8: (1304): 01c2d412-0108-00af-001e-4e6b0041a0f6: 090106 (22000): Cannot perform CREATE STAGE. This session does not have a current schema. Call 'USE SCHEMA', or use a qualified name.
+    Statement preview: CREATE STAGE IF NOT EXISTS OLIST_STAGE
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY ...
+  ⚠ Warning on statement 9: (1304): 01c2d412-0108-0083-001e-4e6b0041716a: 090106 (22000): Cannot perform CREATE STAGE. This session does not have a current schema. Call 'USE SCHEMA', or use a qualified name.
+    Statement preview: CREATE STAGE IF NOT EXISTS SUPERSTORE_STAGE
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSE...
+✓ Completed: 01_setup.sql
+
+Executing: 02_olist_tables.sql
+✓ Completed: 02_olist_tables.sql
+
+Executing: 03_superstore.sql
+  ✓ Statement 2/25 executed successfully
+  ✓ Statement 6/25 executed successfully
+  ✓ Statement 7/25 executed successfully
+  ✓ Statement 8/25 executed successfully
+  ✓ Statement 9/25 executed successfully
+  ✓ Statement 10/25 executed successfully
+  ✓ Statement 11/25 executed successfully
+  ✓ Statement 12/25 executed successfully
+  ✓ Statement 13/25 executed successfully
+  ✓ Statement 14/25 executed successfully
+  ✓ Statement 15/25 executed successfully
+  ✓ Statement 16/25 executed successfully
+  ✓ Statement 17/25 executed successfully
+  ✓ Statement 18/25 executed successfully
+  ✓ Statement 19/25 executed successfully
+  ✓ Statement 20/25 executed successfully
+  ✓ Statement 21/25 executed successfully
+  ✓ Statement 22/25 executed successfully
+  ✓ Statement 23/25 executed successfully
+  ✓ Statement 24/25 executed successfully
+  ✓ Statement 25/25 executed successfully
+✓ Completed: 03_superstore.sql
+
+Executing: 04_metadata.sql
+  ✓ Statement 2/18 executed successfully
+  ✓ Statement 6/18 executed successfully
+  ✓ Statement 7/18 executed successfully
+  ✓ Statement 8/18 executed successfully
+  ✓ Statement 9/18 executed successfully
+  ✓ Statement 10/18 executed successfully
+  ✓ Statement 14/18 executed successfully
+  ✓ Statement 15/18 executed successfully
+  ✓ Statement 16/18 executed successfully
+  ✓ Statement 17/18 executed successfully
+  ✓ Statement 18/18 executed successfully
+✓ Completed: 04_metadata.sql
+
+================================================================================
+  Step 3: Uploading CSV Files to Stages
+================================================================================
+
+Uploading 9 file(s) from /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/data/olist to @ANALYTICS_COPILOT.RAW.OLIST_STAGE
+  ✓ olist_customers_dataset.csv: UPLOADED
+  ✓ olist_geolocation_dataset.csv: UPLOADED
+  ✓ olist_order_items_dataset.csv: UPLOADED
+  ✓ olist_order_payments_dataset.csv: UPLOADED
+  ✓ olist_order_reviews_dataset.csv: UPLOADED
+  ✓ olist_orders_dataset.csv: UPLOADED
+  ✓ olist_products_dataset.csv: UPLOADED
+  ✓ olist_sellers_dataset.csv: UPLOADED
+  ✓ product_category_name_translation.csv: UPLOADED
+✓ Upload completed to @ANALYTICS_COPILOT.RAW.OLIST_STAGE
+
+Uploading 1 file(s) from /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/data/superstore to @ANALYTICS_COPILOT.RAW.SUPERSTORE_STAGE
+  ✓ Sample - Superstore.csv: UPLOADED
+✓ Upload completed to @ANALYTICS_COPILOT.RAW.SUPERSTORE_STAGE
+
+================================================================================
+  Step 4: Loading Data into Tables
+================================================================================
+
+Loading Olist tables:
+  ✓ olist_customers_dataset.csv -> ANALYTICS_COPILOT.RAW.CUSTOMERS: 99441 rows loaded
+  ✓ olist_orders_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDERS: 99441 rows loaded
+  ✓ olist_order_items_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDER_ITEMS: 112650 rows loaded
+  ✓ olist_order_payments_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDER_PAYMENTS: 103886 rows loaded
+  ✓ olist_order_reviews_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDER_REVIEWS: 99224 rows loaded
+  ✓ olist_products_dataset.csv -> ANALYTICS_COPILOT.RAW.PRODUCTS: 32951 rows loaded
+  ✓ olist_sellers_dataset.csv -> ANALYTICS_COPILOT.RAW.SELLERS: 3095 rows loaded
+  ✓ olist_geolocation_dataset.csv -> ANALYTICS_COPILOT.RAW.GEOLOCATION: 1000163 rows loaded
+  ✓ product_category_name_translation.csv -> ANALYTICS_COPILOT.RAW.PRODUCT_CATEGORY_TRANSLATION: 71 rows loaded
+
+Loading Superstore table:
+  ✗ Error loading Sample - Superstore.csv: Failed to load Sample - Superstore.csv into ANALYTICS_COPILOT.RAW.SUPERSTORE_SALES: (1304): 01c2d413-0108-0083-001e-4e6b0041718a: 001003 (42000): SQL compilation error:
+syntax error line 2 at position 60 unexpected '-'.
+
+================================================================================
+  Data Validation
+================================================================================
+
+Row counts for 10 table(s) in RAW schema:
+
+  CUSTOMERS                                   198,882 rows
+  GEOLOCATION                               2,000,326 rows
+  ORDERS                                      198,882 rows
+  ORDER_ITEMS                                 225,300 rows
+  ORDER_PAYMENTS                              207,772 rows
+  ORDER_REVIEWS                               198,448 rows
+  PRODUCTS                                     65,902 rows
+  PRODUCT_CATEGORY_TRANSLATION                    142 rows
+  SELLERS                                       6,190 rows
+  SUPERSTORE_SALES                                  0 rows
+
+  TOTAL                                     3,101,844 rows
+
+✓ Validation completed
+
+================================================================================
+  Ingestion Pipeline Complete
+================================================================================
+
+Next steps:
+  1. Verify row counts match expected values
+  2. Check for any errors or warnings above
+  3. Review data quality in Snowflake
+  4. Proceed with metadata generation (Task 7)
+
+Closing Snowflake session...
+Snowflake session closed successfully
+
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+
+================================================================================
+  Analytics Copilot - Metadata Builder
+================================================================================
+
+================================================================================
+  Step 1: Connecting to Snowflake
+================================================================================
+Using key pair authentication from: ./private_key.pem
+✓ Snowflake session created successfully for user: BLUEJAY
+✓ Connection established
+
+================================================================================
+  Step 2: Clearing Existing Metadata
+================================================================================
+
+Clearing existing metadata...
+✓ Existing metadata cleared
+
+================================================================================
+  Step 3: Discovering Schema
+================================================================================
+
+Querying schema information for RAW...
+✓ Found 10 tables with 73 total columns
+
+================================================================================
+  Step 4: Generating Metadata with Cortex LLM
+================================================================================
+
+[1/10] Processing table: CUSTOMERS (5 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 5 columns
+  → Inserting metadata...
+  ✓ Inserted 5 column descriptions
+
+[2/10] Processing table: GEOLOCATION (5 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 5 columns
+  → Inserting metadata...
+  ✓ Inserted 5 column descriptions
+
+[3/10] Processing table: ORDERS (8 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 8 columns
+  → Inserting metadata...
+  ✓ Inserted 8 column descriptions
+
+[4/10] Processing table: ORDER_ITEMS (7 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 7 columns
+  → Inserting metadata...
+  ✓ Inserted 7 column descriptions
+
+[5/10] Processing table: ORDER_PAYMENTS (5 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 5 columns
+  → Inserting metadata...
+  ✓ Inserted 5 column descriptions
+
+[6/10] Processing table: ORDER_REVIEWS (7 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 7 columns
+  → Inserting metadata...
+  ✓ Inserted 7 column descriptions
+
+[7/10] Processing table: PRODUCTS (9 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 9 columns
+  → Inserting metadata...
+  ✓ Inserted 9 column descriptions
+
+[8/10] Processing table: PRODUCT_CATEGORY_TRANSLATION (2 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 2 columns
+  → Inserting metadata...
+  ✓ Inserted 2 column descriptions
+
+[9/10] Processing table: SELLERS (4 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 4 columns
+  → Inserting metadata...
+  ✓ Inserted 4 column descriptions
+
+[10/10] Processing table: SUPERSTORE_SALES (21 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 21 columns
+  → Inserting metadata...
+  ✓ Inserted 21 column descriptions
+
+================================================================================
+  Metadata Generation Complete
+================================================================================
+
+Summary Statistics:
+  Tables processed:       10
+  Columns discovered:     73
+  Metadata rows inserted: 73
+  Errors encountered:     0
+
+Next steps:
+  1. Verify metadata in Snowflake:
+     SELECT * FROM ANALYTICS_COPILOT.METADATA.TABLE_DESCRIPTIONS LIMIT 10;
+  2. Review generated descriptions for accuracy
+  3. Manually edit descriptions if needed
+  4. Proceed with Cortex Search Service setup (Task 8)
+
+Closing Snowflake session...
+Snowflake session closed successfully
+
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/src/agents/schema_linker.py:209: UserWarning: Cortex Search Service not found. Falling back to keyword search over TABLE_DESCRIPTIONS.
+  warnings.warn(
+======================================================================
+ANALYTICS COPILOT EVALUATION
+======================================================================
+Started at: 2026-03-05 11:03:16
+======================================================================
+
+Loading golden queries from data/golden_queries.json...
+✓ Loaded 50 questions to evaluate
+
+Connecting to Snowflake...
+Using key pair authentication from: ./private_key.pem
+✓ Snowflake session created successfully for user: BLUEJAY
+✓ Connected successfully
+
+======================================================================
+RUNNING EVALUATION
+======================================================================
+
+[1/50] Evaluating: What is the total number of customers in the state of Rio de...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (127 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.53s)
+
+[2/50] Evaluating: What is the average price of products in the 'cama_mesa_banh...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (195 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (11.26s)
+
+[3/50] Evaluating: What is the total freight value for orders delivered in 2018...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (229 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (11.39s)
+
+[4/50] Evaluating: What is the maximum review score given by customers?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (86 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.38s)
+
+[5/50] Evaluating: How many sellers are from the state of São Paulo?...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (162 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (6.58s)
+
+[6/50] Evaluating: What is the total number of customers in the state of Minas ...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (137 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.35s)
+
+[7/50] Evaluating: How many orders were placed in 2017?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (186 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (6.52s)
+
+[8/50] Evaluating: How many orders were delivered in 2018?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (202 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.31s)
+
+[9/50] Evaluating: What is the maximum product weight in grams?...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (87 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (3.69s)
+
+[10/50] Evaluating: What is the total payment value for orders with more than on...
+  → Running schema_linker...
+  → Found 3 relevant tables
+  → Running sql_generator...
+  → Generated SQL (130 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (3.48s)
+
+[11/50] Evaluating: How many distinct product categories exist?...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (80 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (3.80s)
+
+[12/50] Evaluating: How many orders were delivered in the state of São Paulo?...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (296 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (10.86s)
+
+[13/50] Evaluating: What is the total freight value for orders placed in 2018?...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (216 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (9.12s)
+
+[14/50] Evaluating: How many customers are from the city of Rio de Janeiro?...
+  → Running schema_linker...
+  → Found 3 relevant tables
+  → Running sql_generator...
+  → Generated SQL (183 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.30s)
+
+[15/50] Evaluating: What is the average review score across all orders?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (122 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.57s)
+
+[16/50] Evaluating: How many orders have a payment type of credit card?...
+  → Running schema_linker...
+  → Found 3 relevant tables
+  → Running sql_generator...
+  → Generated SQL (300 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (11.85s)
+
+[17/50] Evaluating: What is the total number of sellers?...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (89 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.47s)
+
+[18/50] Evaluating: What is the total freight value for orders delivered in 2017...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (221 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (11.12s)
+
+[19/50] Evaluating: What is the minimum review score given by customers?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (85 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (4.71s)
+
+[20/50] Evaluating: How many sellers are from the city of São Paulo?...
+  → Running schema_linker...
+  → Found 3 relevant tables
+  → Running sql_generator...
+  → Generated SQL (85 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✗ Validation failed!
+Error: (1304): 01c2d421-0107-ff7d-001e-4e6b004153ee: 001003 (42000): SQL compilation error:
+Retrying with error feedback...
+
+Regenerating SQL with error feedback...
+Error provided to LLM: (1304): 01c2d421-0107-ff7d-001e-4e6b004153ee: 001003 (42000): SQL compilation error:...
+New SQL generated with corrections
+Attempt 2/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (9.99s)
+
+[21/50] Evaluating: What is the average order value (price + freight) by custome...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (326 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (13.57s)
+
+[22/50] Evaluating: Which product categories have the highest average review sco...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (795 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (31.38s)
+
+[23/50] Evaluating: What is the total revenue (price + freight) by seller city a...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (473 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (13.27s)
+
+[24/50] Evaluating: What percentage of orders were delivered on time by month?...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (666 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (18.43s)
+
+[25/50] Evaluating: Which customers have placed the most orders?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (234 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (10.84s)
+
+[26/50] Evaluating: What is the average order value (price + freight) by custome...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (326 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (17.83s)
+
+[27/50] Evaluating: Which product categories have the highest average review sco...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (795 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (25.20s)
+
+[28/50] Evaluating: What is the total revenue (price + freight) by seller city a...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (395 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✗ Validation failed!
+Error: (1304): 01c2d424-0107-ff7d-001e-4e6b0041540e: 000904 (42000): SQL compilation error: error line 10 at position 1
+Retrying with error feedback...
+
+Regenerating SQL with error feedback...
+Error provided to LLM: (1304): 01c2d424-0107-ff7d-001e-4e6b0041540e: 000904 (42000): SQL compilation error: error line 10 a...
+New SQL generated with corrections
+Attempt 2/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (79.46s)
+
+[29/50] Evaluating: What percentage of orders were delivered on time by month?...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (642 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (10.56s)
+
+[30/50] Evaluating: Which customers have placed the most orders?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (234 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (6.36s)
+
+[31/50] Evaluating: What is the average order value (price + freight) by custome...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (326 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (13.60s)
+
+[32/50] Evaluating: Which product categories have the highest average review sco...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (795 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (23.76s)
+
+[33/50] Evaluating: What is the total revenue (price + freight) by seller city a...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (473 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (12.31s)
+
+[34/50] Evaluating: What percentage of orders were delivered on time by month?...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (642 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (11.83s)
+
+[35/50] Evaluating: Which customers have placed the most orders?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (234 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (9.48s)
+
+[36/50] Evaluating: What is the average order value (price + freight) by custome...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (326 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (14.28s)
+
+[37/50] Evaluating: Which product categories have the highest average review sco...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (795 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (27.09s)
+
+[38/50] Evaluating: What is the total revenue (price + freight) by seller city a...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (473 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (20.24s)
+
+[39/50] Evaluating: What percentage of orders were delivered on time by month?...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (642 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (18.97s)
+
+[40/50] Evaluating: Which customers have placed the most orders?...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (234 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (9.82s)
+
+[41/50] Evaluating: What is the total payment value by customer state, ranked hi...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (312 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (14.87s)
+
+[42/50] Evaluating: Find the top 3 most ordered products in each category by ord...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (990 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (24.96s)
+
+[43/50] Evaluating: Calculate the customer lifetime value (total payments) and r...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (472 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (19.85s)
+
+[44/50] Evaluating: What is the month-over-month growth rate in total order paym...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (706 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (23.14s)
+
+[45/50] Evaluating: Find the top 3 sellers by total revenue in each state...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (676 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (207.17s)
+
+[46/50] Evaluating: What is the total payment value by customer state, ranked hi...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (311 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (13.39s)
+
+[47/50] Evaluating: Find the top 3 most ordered products in each category by ord...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (990 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (17.16s)
+
+[48/50] Evaluating: What is the month-over-month growth rate in number of orders...
+  → Running schema_linker...
+  → Found 5 relevant tables
+  → Running sql_generator...
+  → Generated SQL (556 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (11.01s)
+
+[49/50] Evaluating: Find the customers who have placed orders in at least 4 dist...
+  → Running schema_linker...
+  → Found 2 relevant tables
+  → Running sql_generator...
+  → Generated SQL (251 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (5.70s)
+
+[50/50] Evaluating: Calculate the customer lifetime value (total payments) and r...
+  → Running schema_linker...
+  → Found 4 relevant tables
+  → Running sql_generator...
+  → Generated SQL (484 chars)
+  → Running validator...
+
+============================================================
+VALIDATOR: Starting SQL validation and execution
+Max retries: 3
+============================================================
+
+Attempt 1/4: Validating SQL...
+✓ Validation passed! SQL is syntactically and semantically correct.
+Executing query...
+✓ Execution successful!
+============================================================
+
+  ✓ Success (7.89s)
+
+
+======================================================================
+CALCULATING METRICS
+======================================================================
+
+OVERALL RESULTS
+----------------------------------------------------------------------
+Total Questions:      50
+Successful:           50
+Failed:               0
+Execution Accuracy:   100.0%
+Average Latency:      17.51 seconds
+
+BREAKDOWN BY DIFFICULTY
+----------------------------------------------------------------------
+
+EASY:
+  Total:      20
+  Successful: 20
+  Failed:     0
+  Accuracy:   100.0%
+  Avg Latency: 7.11s
+
+MEDIUM:
+  Total:      20
+  Successful: 20
+  Failed:     0
+  Accuracy:   100.0%
+  Avg Latency: 19.41s
+
+HARD:
+  Total:      10
+  Successful: 10
+  Failed:     0
+  Accuracy:   100.0%
+  Avg Latency: 34.51s
+
+No failed queries! 🎉
+
+======================================================================
+SAVING RESULTS
+======================================================================
+
+✓ Report saved to: /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/artifacts/evaluation_report.json
+
+======================================================================
+EVALUATION COMPLETE
+======================================================================
+Completed at: 2026-03-05 11:17:55
+======================================================================
+
+Closing Snowflake connection...
+Snowflake session closed successfully
+2026-03-05 12:41:59,710 [INFO] ingest_data: Starting data ingestion pipeline
+2026-03-05 12:41:59,786 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 12:41:59,787 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 12:42:03,072 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771081278,
+"os.name" : Darwin
+
+2026-03-05 12:42:03,073 [INFO] ingest_data: Connected to Snowflake
+2026-03-05 12:42:49,339 [INFO] snowflake.snowpark.session: Closing session: 8530470771081278
+2026-03-05 12:42:49,341 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 12:42:50,104 [INFO] snowflake.snowpark.session: Closed session: 8530470771081278
+2026-03-05 12:43:12,191 [INFO] ingest_data: Starting data ingestion pipeline
+2026-03-05 12:43:12,259 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 12:43:12,260 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 12:43:15,115 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771093554,
+"os.name" : Darwin
+
+2026-03-05 12:43:15,116 [INFO] ingest_data: Connected to Snowflake
+2026-03-05 12:48:18,407 [INFO] snowflake.snowpark.session: Closing session: 8530470771093554
+2026-03-05 12:48:18,410 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 12:48:20,936 [INFO] snowflake.snowpark.session: Closed session: 8530470771093554
+2026-03-05 12:49:01,950 [INFO] evaluate: Starting evaluation
+2026-03-05 12:49:02,025 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 12:49:02,026 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 12:49:05,300 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771097650,
+"os.name" : Darwin
+
+2026-03-05 12:49:24,722 [INFO] snowflake.snowpark.session: Closing session: 8530470771097650
+2026-03-05 12:49:24,723 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 12:49:25,956 [INFO] snowflake.snowpark.session: Closed session: 8530470771097650
+2026-03-05 12:51:11,947 [INFO] ingest_data: Starting data ingestion pipeline
+2026-03-05 12:51:12,015 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 12:51:12,016 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 12:51:14,872 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771097654,
+"os.name" : Darwin
+
+2026-03-05 12:51:14,872 [INFO] ingest_data: Connected to Snowflake
+2026-03-05 12:53:23,954 [INFO] snowflake.snowpark.session: Closing session: 8530470771097654
+2026-03-05 12:53:23,955 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 12:53:24,784 [INFO] snowflake.snowpark.session: Closed session: 8530470771097654
+2026-03-05 12:53:35,679 [INFO] ingest_data: Starting data ingestion pipeline
+2026-03-05 12:53:35,743 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 12:53:35,744 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 12:53:38,776 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771093574,
+"os.name" : Darwin
+
+2026-03-05 12:53:38,777 [INFO] ingest_data: Connected to Snowflake
+2026-03-05 13:05:10,384 [INFO] ingest_data: Data ingestion pipeline complete
+2026-03-05 13:05:10,386 [INFO] snowflake.snowpark.session: Closing session: 8530470771093574
+2026-03-05 13:05:10,389 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 13:05:10,739 [INFO] snowflake.snowpark.session: Closed session: 8530470771093574
+2026-03-05 13:05:10,742 [INFO] snowflake.snowpark.session: Closed session: 8530470771093574
+2026-03-05 13:05:14,528 [INFO] build_metadata: Starting metadata build pipeline
+2026-03-05 13:05:14,611 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 13:05:14,612 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 13:05:18,804 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771097658,
+"os.name" : Darwin
+
+2026-03-05 13:05:18,805 [INFO] build_metadata: Connected to Snowflake
+2026-03-05 13:05:20,469 [INFO] build_metadata: Processing table 1/10: CUSTOMERS (5 columns)
+2026-03-05 13:05:34,245 [INFO] build_metadata: Processing table 2/10: GEOLOCATION (5 columns)
+2026-03-05 13:05:49,187 [INFO] build_metadata: Processing table 3/10: ORDERS (8 columns)
+2026-03-05 13:06:09,023 [INFO] build_metadata: Processing table 4/10: ORDER_ITEMS (7 columns)
+2026-03-05 13:06:28,453 [INFO] build_metadata: Processing table 5/10: ORDER_PAYMENTS (5 columns)
+2026-03-05 13:06:40,557 [INFO] build_metadata: Processing table 6/10: ORDER_REVIEWS (7 columns)
+2026-03-05 13:06:59,429 [INFO] build_metadata: Processing table 7/10: PRODUCTS (9 columns)
+2026-03-05 13:07:23,390 [INFO] build_metadata: Processing table 8/10: PRODUCT_CATEGORY_TRANSLATION (2 columns)
+2026-03-05 13:07:29,837 [INFO] build_metadata: Processing table 9/10: SELLERS (4 columns)
+2026-03-05 13:07:40,745 [INFO] build_metadata: Processing table 10/10: SUPERSTORE_SALES (21 columns)
+2026-03-05 13:08:31,999 [INFO] build_metadata: Metadata build complete: 10 tables, 73 columns inserted, 0 errors
+2026-03-05 13:08:31,999 [INFO] snowflake.snowpark.session: Closing session: 8530470771097658
+2026-03-05 13:08:32,000 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 13:08:32,634 [INFO] snowflake.snowpark.session: Closed session: 8530470771097658
+2026-03-05 13:08:32,634 [INFO] snowflake.snowpark.session: Closed session: 8530470771097658
+2026-03-05 13:08:44,105 [INFO] evaluate: Starting evaluation
+2026-03-05 13:08:44,180 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 13:08:44,181 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 13:08:47,072 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771093582,
+"os.name" : Darwin
+
+2026-03-05 13:10:50,835 [INFO] snowflake.snowpark.session: Closing session: 8530470771093582
+2026-03-05 13:10:50,836 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 13:10:53,419 [INFO] snowflake.snowpark.session: Closed session: 8530470771093582
+2026-03-05 13:12:55,585 [INFO] evaluate: Starting evaluation
+2026-03-05 13:12:55,672 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 13:12:55,673 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+2026-03-05 13:12:58,844 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771101774,
+"os.name" : Darwin
+
+2026-03-05 13:18:51,344 [INFO] evaluate: Evaluation accuracy: 94.0% (47/50)
+2026-03-05 13:18:51,357 [INFO] snowflake.snowpark.session: Closing session: 8530470771101774
+2026-03-05 13:18:51,358 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 13:18:52,242 [INFO] snowflake.snowpark.session: Closed session: 8530470771101774
+2026-03-05 13:18:52,244 [INFO] snowflake.snowpark.session: Closed session: 8530470771101774

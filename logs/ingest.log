@@ -1,0 +1,163 @@
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+================================================================================
+  Analytics Copilot - Data Ingestion Pipeline
+================================================================================
+2026-03-05 12:53:35,679 [INFO] ingest_data: Starting data ingestion pipeline
+
+Project root: /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07
+
+================================================================================
+  Step 1: Connecting to Snowflake
+================================================================================
+Using key pair authentication from: ./private_key.pem
+2026-03-05 12:53:35,743 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 12:53:35,744 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+2026-03-05 12:53:38,776 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771093574,
+"os.name" : Darwin
+
+✓ Snowflake session created successfully for user: BLUEJAY
+2026-03-05 12:53:38,777 [INFO] ingest_data: Connected to Snowflake
+✓ Connection established
+
+================================================================================
+  Step 2: Executing SQL Scripts
+================================================================================
+
+Executing: 01_setup.sql
+  ✓ Statement 4/10 executed successfully
+  ✓ Statement 5/10 executed successfully
+  ✓ Statement 6/10 executed successfully
+  ⚠ Warning on statement 8: (1304): 01c2d48d-0107-ff7d-001e-4e6b004154f2: 090106 (22000): 01c2d48d-0107-ff7d-001e-4e6b004154f2: Cannot perform CREATE STAGE. This session does not have a current schema. Call 'USE SCHEMA', or use a qualified name.
+    Statement preview: CREATE STAGE IF NOT EXISTS OLIST_STAGE
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY ...
+  ⚠ Warning on statement 9: (1304): 01c2d48d-0107-fd12-001e-4e6b004164b2: 090106 (22000): 01c2d48d-0107-fd12-001e-4e6b004164b2: Cannot perform CREATE STAGE. This session does not have a current schema. Call 'USE SCHEMA', or use a qualified name.
+    Statement preview: CREATE STAGE IF NOT EXISTS SUPERSTORE_STAGE
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSE...
+✓ Completed: 01_setup.sql
+
+Executing: 02_olist_tables.sql
+✓ Completed: 02_olist_tables.sql
+
+Executing: 03_superstore.sql
+  ✓ Statement 2/25 executed successfully
+  ✓ Statement 6/25 executed successfully
+  ✓ Statement 7/25 executed successfully
+  ✓ Statement 8/25 executed successfully
+  ✓ Statement 9/25 executed successfully
+  ✓ Statement 10/25 executed successfully
+  ✓ Statement 11/25 executed successfully
+  ✓ Statement 12/25 executed successfully
+  ✓ Statement 13/25 executed successfully
+  ✓ Statement 14/25 executed successfully
+  ✓ Statement 15/25 executed successfully
+  ✓ Statement 16/25 executed successfully
+  ✓ Statement 17/25 executed successfully
+  ✓ Statement 18/25 executed successfully
+  ✓ Statement 19/25 executed successfully
+  ✓ Statement 20/25 executed successfully
+  ✓ Statement 21/25 executed successfully
+  ✓ Statement 22/25 executed successfully
+  ✓ Statement 23/25 executed successfully
+  ✓ Statement 24/25 executed successfully
+  ✓ Statement 25/25 executed successfully
+✓ Completed: 03_superstore.sql
+
+Executing: 04_metadata.sql
+  ✓ Statement 2/18 executed successfully
+  ✓ Statement 6/18 executed successfully
+  ✓ Statement 7/18 executed successfully
+  ✓ Statement 8/18 executed successfully
+  ✓ Statement 9/18 executed successfully
+  ✓ Statement 10/18 executed successfully
+  ✓ Statement 14/18 executed successfully
+  ✓ Statement 15/18 executed successfully
+  ✓ Statement 16/18 executed successfully
+  ✓ Statement 17/18 executed successfully
+  ✓ Statement 18/18 executed successfully
+✓ Completed: 04_metadata.sql
+
+================================================================================
+  Step 3: Uploading CSV Files to Stages
+================================================================================
+
+Uploading 9 file(s) from /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/data/olist to @ANALYTICS_COPILOT.RAW.OLIST_STAGE
+  → Uploading olist_sellers_dataset.csv... ✓ UPLOADED
+  → Uploading product_category_name_translation.csv... ✓ UPLOADED
+  → Uploading olist_orders_dataset.csv... ✓ UPLOADED
+  → Uploading olist_order_items_dataset.csv... ✓ UPLOADED
+  → Uploading olist_customers_dataset.csv... ✓ UPLOADED
+  → Uploading olist_geolocation_dataset.csv... ✓ UPLOADED
+  → Uploading olist_order_payments_dataset.csv... ✓ UPLOADED
+  → Uploading olist_order_reviews_dataset.csv... ✓ UPLOADED
+  → Uploading olist_products_dataset.csv... ✓ UPLOADED
+✓ Upload completed to @ANALYTICS_COPILOT.RAW.OLIST_STAGE
+
+Uploading 1 file(s) from /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/data/superstore to @ANALYTICS_COPILOT.RAW.SUPERSTORE_STAGE
+  → Uploading Sample - Superstore.csv... ✓ UPLOADED
+✓ Upload completed to @ANALYTICS_COPILOT.RAW.SUPERSTORE_STAGE
+
+================================================================================
+  Step 4: Loading Data into Tables
+================================================================================
+
+Loading Olist tables:
+  ✓ olist_customers_dataset.csv -> ANALYTICS_COPILOT.RAW.CUSTOMERS: 99441 rows loaded
+  ✓ olist_orders_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDERS: 99441 rows loaded
+  ✓ olist_order_items_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDER_ITEMS: 112650 rows loaded
+  ✓ olist_order_payments_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDER_PAYMENTS: 103886 rows loaded
+  ✓ olist_order_reviews_dataset.csv -> ANALYTICS_COPILOT.RAW.ORDER_REVIEWS: 99224 rows loaded
+  ✓ olist_products_dataset.csv -> ANALYTICS_COPILOT.RAW.PRODUCTS: 32951 rows loaded
+  ✓ olist_sellers_dataset.csv -> ANALYTICS_COPILOT.RAW.SELLERS: 3095 rows loaded
+  ✓ olist_geolocation_dataset.csv -> ANALYTICS_COPILOT.RAW.GEOLOCATION: 1000163 rows loaded
+  ✓ product_category_name_translation.csv -> ANALYTICS_COPILOT.RAW.PRODUCT_CATEGORY_TRANSLATION: 71 rows loaded
+
+Loading Superstore table:
+  ✗ Error loading Sample - Superstore.csv: Failed to load Sample - Superstore.csv into ANALYTICS_COPILOT.RAW.SUPERSTORE_SALES: (1304): 01c2d499-0108-009c-001e-4e6b00419326: 001003 (42000): 01c2d499-0108-009c-001e-4e6b00419326: SQL compilation error:
+syntax error line 2 at position 60 unexpected '-'.
+
+================================================================================
+  Data Validation
+================================================================================
+
+Row counts for 10 table(s) in RAW schema:
+
+  CUSTOMERS                                   298,323 rows
+  GEOLOCATION                               3,000,489 rows
+  ORDERS                                      298,323 rows
+  ORDER_ITEMS                                 337,950 rows
+  ORDER_PAYMENTS                              311,658 rows
+  ORDER_REVIEWS                               297,672 rows
+  PRODUCTS                                     98,853 rows
+  PRODUCT_CATEGORY_TRANSLATION                    213 rows
+  SELLERS                                       9,285 rows
+  SUPERSTORE_SALES                                  0 rows
+
+  TOTAL                                     4,652,766 rows
+
+✓ Validation completed
+2026-03-05 13:05:10,384 [INFO] ingest_data: Data ingestion pipeline complete
+
+================================================================================
+  Ingestion Pipeline Complete
+================================================================================
+
+Next steps:
+  1. Verify row counts match expected values
+  2. Check for any errors or warnings above
+  3. Review data quality in Snowflake
+  4. Proceed with metadata generation (Task 7)
+
+Closing Snowflake session...
+2026-03-05 13:05:10,386 [INFO] snowflake.snowpark.session: Closing session: 8530470771093574
+2026-03-05 13:05:10,389 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 13:05:10,739 [INFO] snowflake.snowpark.session: Closed session: 8530470771093574
+Snowflake session closed successfully
+2026-03-05 13:05:10,742 [INFO] snowflake.snowpark.session: Closed session: 8530470771093574

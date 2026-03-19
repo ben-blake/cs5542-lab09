@@ -1,0 +1,147 @@
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+================================================================================
+  Analytics Copilot - Metadata Builder
+================================================================================
+2026-03-05 13:05:14,528 [INFO] build_metadata: Starting metadata build pipeline
+
+================================================================================
+  Step 1: Connecting to Snowflake
+================================================================================
+Using key pair authentication from: ./private_key.pem
+2026-03-05 13:05:14,611 [INFO] snowflake.connector.connection: Snowflake Connector for Python Version: 4.3.0, Python Version: 3.9.6, Platform: macOS-26.3-x86_64-i386-64bit
+2026-03-05 13:05:14,612 [INFO] snowflake.connector.connection: Connecting to GLOBAL Snowflake domain
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+2026-03-05 13:05:18,804 [INFO] snowflake.snowpark.session: Snowpark Session information: 
+"version" : 1.45.0,
+"python.version" : 3.9.6,
+"python.connector.version" : 4.3.0,
+"python.connector.session.id" : 8530470771097658,
+"os.name" : Darwin
+
+✓ Snowflake session created successfully for user: BLUEJAY
+2026-03-05 13:05:18,805 [INFO] build_metadata: Connected to Snowflake
+✓ Connection established
+
+================================================================================
+  Step 2: Clearing Existing Metadata
+================================================================================
+
+Clearing existing metadata...
+✓ Existing metadata cleared
+
+================================================================================
+  Step 3: Discovering Schema
+================================================================================
+
+Querying schema information for RAW...
+✓ Found 10 tables with 73 total columns
+
+================================================================================
+  Step 4: Generating Metadata with Cortex LLM
+================================================================================
+2026-03-05 13:05:20,469 [INFO] build_metadata: Processing table 1/10: CUSTOMERS (5 columns)
+
+[1/10] Processing table: CUSTOMERS (5 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 5 columns
+  → Inserting metadata...
+  ✓ Inserted 5 column descriptions
+2026-03-05 13:05:34,245 [INFO] build_metadata: Processing table 2/10: GEOLOCATION (5 columns)
+
+[2/10] Processing table: GEOLOCATION (5 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 5 columns
+  → Inserting metadata...
+  ✓ Inserted 5 column descriptions
+2026-03-05 13:05:49,187 [INFO] build_metadata: Processing table 3/10: ORDERS (8 columns)
+
+[3/10] Processing table: ORDERS (8 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 8 columns
+  → Inserting metadata...
+  ✓ Inserted 8 column descriptions
+2026-03-05 13:06:09,023 [INFO] build_metadata: Processing table 4/10: ORDER_ITEMS (7 columns)
+
+[4/10] Processing table: ORDER_ITEMS (7 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 7 columns
+  → Inserting metadata...
+  ✓ Inserted 7 column descriptions
+2026-03-05 13:06:28,453 [INFO] build_metadata: Processing table 5/10: ORDER_PAYMENTS (5 columns)
+
+[5/10] Processing table: ORDER_PAYMENTS (5 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 5 columns
+  → Inserting metadata...
+  ✓ Inserted 5 column descriptions
+2026-03-05 13:06:40,557 [INFO] build_metadata: Processing table 6/10: ORDER_REVIEWS (7 columns)
+
+[6/10] Processing table: ORDER_REVIEWS (7 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 7 columns
+  → Inserting metadata...
+  ✓ Inserted 7 column descriptions
+2026-03-05 13:06:59,429 [INFO] build_metadata: Processing table 7/10: PRODUCTS (9 columns)
+
+[7/10] Processing table: PRODUCTS (9 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 9 columns
+  → Inserting metadata...
+  ✓ Inserted 9 column descriptions
+2026-03-05 13:07:23,390 [INFO] build_metadata: Processing table 8/10: PRODUCT_CATEGORY_TRANSLATION (2 columns)
+
+[8/10] Processing table: PRODUCT_CATEGORY_TRANSLATION (2 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 2 columns
+  → Inserting metadata...
+  ✓ Inserted 2 column descriptions
+2026-03-05 13:07:29,837 [INFO] build_metadata: Processing table 9/10: SELLERS (4 columns)
+
+[9/10] Processing table: SELLERS (4 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 4 columns
+  → Inserting metadata...
+  ✓ Inserted 4 column descriptions
+2026-03-05 13:07:40,745 [INFO] build_metadata: Processing table 10/10: SUPERSTORE_SALES (21 columns)
+
+[10/10] Processing table: SUPERSTORE_SALES (21 columns)
+  → Calling Cortex LLM...
+  ✓ Received metadata for 21 columns
+  → Inserting metadata...
+  ✓ Inserted 21 column descriptions
+
+================================================================================
+  Metadata Generation Complete
+================================================================================
+2026-03-05 13:08:31,999 [INFO] build_metadata: Metadata build complete: 10 tables, 73 columns inserted, 0 errors
+
+Summary Statistics:
+  Tables processed:       10
+  Columns discovered:     73
+  Metadata rows inserted: 73
+  Errors encountered:     0
+
+Next steps:
+  1. Verify metadata in Snowflake:
+     SELECT * FROM ANALYTICS_COPILOT.METADATA.TABLE_DESCRIPTIONS LIMIT 10;
+  2. Review generated descriptions for accuracy
+  3. Manually edit descriptions if needed
+  4. Proceed with Cortex Search Service setup (Task 8)
+
+Closing Snowflake session...
+2026-03-05 13:08:31,999 [INFO] snowflake.snowpark.session: Closing session: 8530470771097658
+2026-03-05 13:08:32,000 [INFO] snowflake.snowpark.session: Canceling all running queries
+2026-03-05 13:08:32,634 [INFO] snowflake.snowpark.session: Closed session: 8530470771097658
+Snowflake session closed successfully
+2026-03-05 13:08:32,634 [INFO] snowflake.snowpark.session: Closed session: 8530470771097658
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Using key pair authentication from: ./private_key.pem
+/Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/boto3/compat.py:89: PythonDeprecationWarning: Boto3 will no longer support Python 3.9 starting April 29, 2026. To continue receiving service updates, bug fixes, and security updates please upgrade to Python 3.10 or later. More information can be found here: https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/
+  warnings.warn(warning, PythonDeprecationWarning)
+✓ Snowflake session created successfully for user: BLUEJAY
+Snowflake session closed successfully
+Done

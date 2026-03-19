@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07
+collecting ... collected 18 items
+
+tests/test_smoke.py::TestImports::test_import_config PASSED              [  5%]
+tests/test_smoke.py::TestImports::test_import_logger PASSED              [ 11%]
+tests/test_smoke.py::TestImports::test_import_schema_linker PASSED       [ 16%]
+tests/test_smoke.py::TestImports::test_import_sql_generator PASSED       [ 22%]
+tests/test_smoke.py::TestImports::test_import_validator PASSED           [ 27%]
+tests/test_smoke.py::TestImports::test_import_viz PASSED                 [ 33%]
+tests/test_smoke.py::TestConfig::test_config_has_llm_model PASSED        [ 38%]
+tests/test_smoke.py::TestConfig::test_config_has_seed PASSED             [ 44%]
+tests/test_smoke.py::TestGoldenQueries::test_golden_queries_exists PASSED [ 50%]
+tests/test_smoke.py::TestGoldenQueries::test_golden_queries_structure PASSED [ 55%]
+tests/test_smoke.py::TestGoldenQueries::test_golden_queries_valid_json PASSED [ 61%]
+tests/test_smoke.py::TestVisualization::test_auto_chart_bar PASSED       [ 66%]
+tests/test_smoke.py::TestVisualization::test_auto_chart_empty PASSED     [ 72%]
+tests/test_smoke.py::TestVisualization::test_auto_chart_single_column PASSED [ 77%]
+tests/test_smoke.py::TestSQLExtraction::test_extract_empty PASSED        [ 83%]
+tests/test_smoke.py::TestSQLExtraction::test_extract_fenced_sql PASSED   [ 88%]
+tests/test_smoke.py::TestSQLExtraction::test_extract_plain_sql PASSED    [ 94%]
+tests/test_smoke.py::TestSchemaLinkerInputValidation::test_empty_question_returns_empty PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/test_smoke.py::TestImports::test_import_schema_linker
+  /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/venv/lib/python3.9/site-packages/snowflake/connector/vendored/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+    warnings.warn(
+
+tests/test_smoke.py::TestImports::test_import_schema_linker
+  /Users/ben/Documents/UMKC/BIGDATA/cs5542-lab07/src/agents/schema_linker.py:33: DeprecationWarning: Python Runtime 3.9 reached its End-Of-Life (EOL) in October 2025, there will be no further bug fixes or security updates for this runtime. We recommend that you upgrade your existing Python 3.9 objects to Python 3.10, 3.11, 3.12 or 3.13. Please note that end of support does not impact execution, and you will still be able to update and invoke existing objects. However, they will be running on an unsupported runtime which will no longer be maintained or patched by the Snowflake team. For more details, please refer to https://docs.snowflake.com/en/developer-guide/python-runtime-support-policy.
+    from snowflake.snowpark import Session
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 18 passed, 2 warnings in 3.39s ========================
